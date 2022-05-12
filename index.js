@@ -1,41 +1,66 @@
-let primeiraCarta = 10;
-let segundaCarta = 4;
-let cards = [primeiraCarta, segundaCarta];
-let sum = primeiraCarta + segundaCarta
-let temBlackJack = false
-let taVivo = true
+let cards = []
+let sum = 0
+let hasBlackJack = false
+let isAlive = false
 message = ""
-
 let messageEl = document.getElementById("message-el");
 let sumEl = document.querySelector("#sum-el")  //Outra maneira de pegar elementos do DOM // let sumEl = document.getElementById("sum-el");
 let cardsEl = document.querySelector("#cards-el")
 
-function startGame() {
-    rendergame();
+let player = {
+    name: "Jogador",
+    chips: 145   
 }
 
 
+let playerEl = document.getElementById("player-el")
+playerEl.textContent = player.name + ": $" + player.chips
+
+
+function getRandomCard() {
+    let randomNumber = Math.floor(Math.random() * 13) + 1
+    if (randomNumber > 10) {
+        return 10 
+        } else if (randomNumber === 1) {
+            return 11
+        } else {
+            return randomNumber
+        }
+    }
+function startGame() {
+    isAlive = true
+    let firstCard = getRandomCard();
+    let secondCard = getRandomCard();
+    cards = [firstCard, secondCard]
+    sum = firstCard + secondCard
+    rendergame()
+}
 function rendergame() {
-    // Condição: 
+    cardsEl.textContent = "Cards: "
+    for (let i = 0; i < cards.length; i++) {
+        cardsEl.textContent += cards[i] + " "
+    }
+    sumEl.textContent = "Soma: " + sum
+    // Condição:
     if (sum < 21) {
         message = "Quer adicionar outra carta? 🤔 "
     } else if (sum === 21) {
         message = "BlackJack!🥳"
-        temBlackJack = true
+        hasBlackJack = true
     } else {
         message = "Perdeu!😂😂😂"
-        taVivo = false
+        isAlive = false
     }
 
     // texto a ser mudado:
     messageEl.textContent = message;
-    sumEl.textContent = "Soma: " + sum
-    cardsEl.textContent = "Cartas: " + cards[0] + ", " + cards[1]
 }
-
 function newCard() {
-    console.log("Gerando outra carta")
-    let card = 7
-    sum += card
-    rendergame()
+    if (isAlive === true && hasBlackJack === false) {
+        let card = getRandomCard()
+        sum += card
+        cards.push(card)
+        console.log(cards)
+        rendergame()
+    }
 }
