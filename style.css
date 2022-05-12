@@ -1,5 +1,4 @@
-body
-{
+body {
     max-height: fit-content;
     max-width: 1600px;
     background-color: black;
@@ -7,33 +6,31 @@ body
     text-align: center;
     font-family: 'Oleo Script Swash Caps', cursive;
 }
+
 #message-el {
     font-size: 35px;
 }
 
-h1
-{
+h1 {
     color: mediumspringgreen;
 }
-
-p
-{
+p {
     font-size: 26px;
     color: burlywood;
 }
 
-button 
-{
+button {
     box-sizing: border-box;
     color: black;
     width: 170px;
     margin-bottom: 10px;
     height: 60px;
-    font-size: 25px;
+    font-size: 30px;
     text-align: center;
     font-weight: bold;
     border-radius: 6px;
-    background: mediumspringgreen;
+    background: mediumseagreen;
+    font-family: 'Oleo Script Swash Caps';
 } button:hover {
     background: rgb(8, 230, 144);
 }
